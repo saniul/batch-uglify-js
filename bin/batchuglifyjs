@@ -1,0 +1,18 @@
+#! /usr/bin/env node
+// -*- js -*-
+
+"use strict";
+
+const { batchUglify } = require('../lib')
+
+let nameCache = {}
+const options = { 
+    mangle: {
+        toplevel: true 
+    },
+    nameCache
+}
+
+batchUglify(process.argv.slice(2), options).then(values => {
+    process.stdout.write(JSON.stringify(values))
+})
